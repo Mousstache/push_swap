@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 07:29:19 by motroian          #+#    #+#             */
-/*   Updated: 2023/02/16 23:47:24 by motroian         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:10:33 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,21 @@ int	check_int(char *str)
 		a++;
 	}
 	return (1);
+}
+
+void	aff_list(t_list *lst)
+{
+	int		i;
+	t_list	*temp;
+
+	if (!lst)
+		return ;
+	i = 0;
+	temp = lst;
+	while (temp)
+	{
+		ft_printf("%d ===%d\n", i, temp->valeur);
+		i++;
+		temp = temp->next;
+	}
 }

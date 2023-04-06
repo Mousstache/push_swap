@@ -13,6 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define BUFFER_SIZE 42
+
 # include "../libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -58,7 +60,6 @@ typedef struct s_countmoves
 	int	rrr;
 }	t_countmoves;
 
-//int			check_int(long int *tab, int ac);
 int			check_int(char *str);
 int			check_double(long int *tab, int ac);
 int			check_range(long int *tab, int size);
@@ -106,6 +107,19 @@ void		rotate_aa(t_list **pile_a);
 void		rotate_bb(t_list **pile_b);
 int			ft_mediane(long int *tab, t_data *data, int size);
 int			val_max(t_data *data);
+void		free_list(t_list *lst);
+void		new_push_a(t_data *data);
+void		new_push_b(t_data *data);
+void		new_swap_a(t_data *data);
+void		new_swap_b(t_data *data);
+void		new_rotate_a(t_list **pile_a);
+void		new_rotate_b(t_list **pile_a);
+void		new_reverse_a(t_list **pile_a);
+void		new_reverse_b(t_list **pile_b);
+void		new_rr(t_data *data);
+void		new_rrr(t_data *data);
+int			parsing(char **av, t_data *data);
 char		*ft_gnl(int fd, int boolean);
+void		free_exit(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:12:10 by motroian          #+#    #+#             */
-/*   Updated: 2023/02/16 23:48:42 by motroian         ###   ########.fr       */
+/*   Updated: 2023/02/13 23:04:32 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ long int	*newtab(t_data *data, int *size)
 	temp = data->pile_a;
 	*size = ft_lstsize(data->pile_a);
 	tab = malloc(sizeof(long int) * (*size));
-	if (!tab)
-		return (NULL);
 	while (temp)
 	{
 		tab[i++] = temp->valeur;

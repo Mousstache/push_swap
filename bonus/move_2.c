@@ -1,38 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   move_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 17:47:58 by motroian          #+#    #+#             */
-/*   Updated: 2023/02/16 23:46:17 by motroian         ###   ########.fr       */
+/*   Created: 2023/01/19 07:29:51 by motroian          #+#    #+#             */
+/*   Updated: 2023/02/12 19:40:50 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	if (*lst)
-		new->next = *lst;
-	*lst = new;
-}
-
-void	rotate_a(t_list **pile_a)
+void	reverse_bb(t_list **pile_b)
 {
 	t_list	*tmp;
+	t_list	*tmp2;
+
+	if (!(*pile_b) || (*pile_b)->next == NULL)
+		return ;
+	tmp = ft_lstlast((*pile_b));
+	tmp2 = (*pile_b);
+	while (tmp2->next->next)
+		tmp2 = tmp2->next;
+	tmp2->next = NULL;
+	tmp->next = (*pile_b);
+	(*pile_b) = tmp;
+}
+
+void	reverse_aa(t_list **pile_a)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
 
 	if (!(*pile_a))
 		return ;
 	tmp = ft_lstlast((*pile_a));
+	tmp2 = (*pile_a);
+	while (tmp2->next->next)
+		tmp2 = tmp2->next;
+	tmp2->next = NULL;
 	tmp->next = (*pile_a);
-	(*pile_a) = (*pile_a)->next;
-	tmp->next->next = NULL;
-	ft_printf("ra\n");
+	(*pile_a) = tmp;
 }
 
-void	rotate_b(t_list **pile_b)
+void	rotate_bb(t_list **pile_b)
 {
 	t_list	*tmp;
 
@@ -42,33 +54,23 @@ void	rotate_b(t_list **pile_b)
 	tmp->next = (*pile_b);
 	(*pile_b) = (*pile_b)->next;
 	tmp->next->next = NULL;
-	ft_printf("rb\n");
 }
 
-void	swap_a(t_data *data)
+void	rotate_aa(t_list **pile_a)
 {
 	t_list	*tmp;
 
-	if (!data->pile_a || data->pile_a->next == NULL)
+	if (!(*pile_a))
 		return ;
-	tmp = data->pile_a;
-	data->pile_a = data->pile_a->next;
-	tmp->next = data->pile_a->next;
-	data->pile_a->next = tmp;
-	data->nb++;
-	ft_printf("sa\n");
+	tmp = ft_lstlast((*pile_a));
+	tmp->next = (*pile_a);
+	(*pile_a) = (*pile_a)->next;
+	tmp->next->next = NULL;
 }
 
-void	swap_b(t_data *data)
+void	rrr(t_data *data)
 {
-	t_list	*tmp;
-
-	if (!data->pile_b || data->pile_b->next == NULL)
-		return ;
-	tmp = data->pile_b;
-	data->pile_b = data->pile_b->next;
-	tmp->next = data->pile_b->next;
-	data->pile_b->next = tmp;
-	data->nb++;
-	ft_printf("sb\n");
+	reverse_aa(&data->pile_a);
+	reverse_bb(&data->pile_b);
+	ft_printf("rrr\n");
 }

@@ -6,13 +6,12 @@
 /*   By: motroian <motroian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:33:56 by motroian          #+#    #+#             */
-/*   Updated: 2023/02/17 18:20:09 by motroian         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:20:43 by motroian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static
 void	free_list(t_list *lst)
 {
 	t_list	*ptr;
@@ -50,7 +49,7 @@ int	parsing(char **av, t_data *data)
 	if (check_double(data->tab, data->len) == 0)
 		return (ft_putstr_e("error\n"), 0);
 	if (check_range(data->tab, data->len) == 0)
-		return (0);
+		return (ft_putstr_e("error\n"), 0);
 	return (1);
 }
 
@@ -74,7 +73,7 @@ void	algo(t_data *data)
 int	push_swap(char **str, t_data *data)
 {
 	if (parsing(str, data) == 0)
-		return (0);
+		return (ft_printf("error\n"), 0);
 	ft_add(data);
 	data->size_a = ft_lstsize(data->pile_a);
 	ft_sort_int_tab(data->tab, data->size_a, data);
@@ -90,24 +89,4 @@ int	push_swap(char **str, t_data *data)
 	else
 		algo(data);
 	return (1);
-}
-
-int	main(int ac, char **av)
-{
-	t_data	*data;
-
-	data = ft_calloc(1, sizeof(t_data));
-	if (!data)
-		return (0);
-	if (ac > 1)
-	{
-		push_swap(av, data);
-	}
-	if (data->tab)
-		free(data->tab);
-	free_list(data -> pile_a);
-	free_list(data->pile_b);
-	free_all(data->tableau);
-	free(data);
-	return (0);
 }
